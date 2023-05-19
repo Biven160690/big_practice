@@ -1,0 +1,13 @@
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5rem;
+}
