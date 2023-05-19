@@ -19,6 +19,6 @@ jobs:
          npm ci  
       - name: Run test
         run: 
-         yarn test
+         npm run test
         env:
           CI: true
