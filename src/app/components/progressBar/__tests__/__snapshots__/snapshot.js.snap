@@ -28,32 +28,3 @@ exports[`renders ProgressBar 1`] = `
   </div>
 </div>
 `;
-
-exports[`renders homepage unchanged 1`] = `
-<div>
-  <div
-    class="progressBar"
-  >
-    <div
-      class="container"
-      data-testid="container"
-    >
-      <div
-        class="progressLineContainer"
-      >
-        <div
-          class="defaultLine"
-        />
-        <div
-          class="completedLine"
-          data-testid="completed-line"
-        />
-      </div>
-      <div
-        class="runner"
-        data-testid="runner"
-      />
-    </div>
-  </div>
-</div>
-`;
