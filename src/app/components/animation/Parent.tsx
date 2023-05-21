@@ -20,7 +20,7 @@ export const Parent = ({ elements, delay }: Props) => {
     });
 
     return (
-        <animated.div className={styles.parent} style={style} data-testId="parent">
+        <animated.div className={styles.parent} style={style} data-testid="parent">
             {elements.map((child, index) => {
                 return <Child key={child} delay={delay + childrenDelay * (index + 1)} />;
             })}

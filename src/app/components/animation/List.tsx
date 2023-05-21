@@ -6,7 +6,7 @@ import styles from './animation.module.scss';
 
 export const List = () => {
     return (
-        <div className={styles.awardContainer}>
+        <div className={styles.awardContainer} data-testid='list'>
             <AnimationWrapper>
                 <animated.div className={styles.square} />
                 <animated.div className={styles.circle} />
