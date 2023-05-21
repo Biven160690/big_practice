@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders AnimationElements 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="awardContainer"
+      data-testid="list"
+    >
+      <div
+        class="square"
+        style="opacity: 0; transform: translateY(-100%);"
+      />
+      <div
+        class="circle"
+        style="opacity: 0; transform: translateY(100%);"
+      />
+      <div
+        class="triangleTop"
+        style="opacity: 0; transform: translateX(-100%);"
+      />
+      <div
+        class="triangleBottom"
+        style="opacity: 0; transform: translateX(100%);"
+      />
+    </div>
+    <div
+      class="parent"
+      data-testid="parent"
+      style="opacity: 0; transform: translateY(-100%);"
+    >
+      <div
+        class="child"
+        data-testid="child"
+        style="opacity: 0; transform: translateY(-100%);"
+      />
+      <div
+        class="child"
+        data-testid="child"
+        style="opacity: 0; transform: translateY(-100%);"
+      />
+      <div
+        class="child"
+        data-testid="child"
+        style="opacity: 0; transform: translateY(-100%);"
+      />
+      <div
+        class="child"
+        data-testid="child"
+        style="opacity: 0; transform: translateY(-100%);"
+      />
+      <div
+        class="child"
+        data-testid="child"
+        style="opacity: 0; transform: translateY(-100%);"
+      />
+      <div
+        class="child"
+        data-testid="child"
+        style="opacity: 0; transform: translateY(-100%);"
+      />
+    </div>
+    <div
+      class="parent"
+      data-testid="parent"
+      style="opacity: 0; transform: translateY(-100%);"
+    >
+      <div
+        class="child"
+        data-testid="child"
+        style="opacity: 0; transform: translateY(-100%);"
+      />
+      <div
+        class="child"
+        data-testid="child"
+        style="opacity: 0; transform: translateY(-100%);"
+      />
+      <div
+        class="child"
+        data-testid="child"
+        style="opacity: 0; transform: translateY(-100%);"
+      />
+      <div
+        class="child"
+        data-testid="child"
+        style="opacity: 0; transform: translateY(-100%);"
+      />
+      <div
+        class="child"
+        data-testid="child"
+        style="opacity: 0; transform: translateY(-100%);"
+      />
+      <div
+        class="child"
+        data-testid="child"
+        style="opacity: 0; transform: translateY(-100%);"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders AnimationWrapper 1`] = `
+<div>
+  <div
+    style="transform: [object Object];"
+  >
+    First child
+  </div>
+  <div
+    style="transform: [object Object];"
+  >
+    Second child
+  </div>
+</div>
+`;
+
+exports[`renders Child 1`] = `
+<div>
+  <div
+    class="child"
+    data-testid="child"
+    style="opacity: 0; transform: translateY(-100%);"
+  />
+</div>
+`;
+
+exports[`renders List 1`] = `
+<div>
+  <div
+    class="awardContainer"
+    data-testid="list"
+  >
+    <div
+      class="square"
+      style="opacity: 0; transform: translateY(-100%);"
+    />
+    <div
+      class="circle"
+      style="opacity: 0; transform: translateY(100%);"
+    />
+    <div
+      class="triangleTop"
+      style="opacity: 0; transform: translateX(-100%);"
+    />
+    <div
+      class="triangleBottom"
+      style="opacity: 0; transform: translateX(100%);"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders Parent 1`] = `
+<div>
+  <div
+    class="parent"
+    data-testid="parent"
+    style="opacity: 0; transform: translateY(-100%);"
+  >
+    <div
+      class="child"
+      data-testid="child"
+      style="opacity: 0; transform: translateY(-100%);"
+    />
+    <div
+      class="child"
+      data-testid="child"
+      style="opacity: 0; transform: translateY(-100%);"
+    />
+    <div
+      class="child"
+      data-testid="child"
+      style="opacity: 0; transform: translateY(-100%);"
+    />
+  </div>
+</div>
+`;
