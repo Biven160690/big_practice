@@ -16,5 +16,11 @@ export const Child = ({ delay }: Props) => {
         delay,
     });
 
-    return <animated.div className={styles.child} style={style} data-testid="child"/>;
+    return (
+        <animated.div
+            className={styles.child}
+            style={style}
+            data-testid="child"
+        />
+    );
 };
