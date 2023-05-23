@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './progressBsr.module.scss';
+import styles from './styles.module.scss';
 
 const getRunnerPosition = (clientX: number, contentWidth: number) => {
     if (clientX <= 0) {
@@ -16,49 +16,50 @@ const getRunnerPosition = (clientX: number, contentWidth: number) => {
 };
 
 export const ProgressBar = () => {
-    const runner = React.useRef<HTMLDivElement>(null);
-    const container = React.useRef<HTMLDivElement>(null);
-    const completedLine = React.useRef<HTMLDivElement>(null);
+    const runnerRef = React.useRef<HTMLDivElement>(null);
+    const containerRef = React.useRef<HTMLDivElement>(null);
+    const completedLineRef = React.useRef<HTMLDivElement>(null);
 
     React.useEffect(() => {
-        const runnerRef = runner.current;
-        const containerRef = container.current;
-        const completedLineRef = completedLine.current;
+        const runner = runnerRef.current;
+        const container = containerRef.current;
+        const completedLine = completedLineRef.current;
 
-
-        if (!(runnerRef && containerRef && completedLineRef)) {
+        if (!(runner && container && completedLine)) {
             return;
         }
 
         const handleMouseUp = () => {
             document.removeEventListener('mouseup', handleMouseUp);
-            containerRef.removeEventListener('mousemove', handleMouseMove);
+            container.removeEventListener('mousemove', handleMouseMove);
         };
 
         const handleMouseMove = (e: MouseEvent) => {
-            const containerWidth = containerRef.clientWidth;
-            const runnerWidth = runnerRef.clientWidth;
+            const containerWidth = container.clientWidth;
+            const runnerWidth = runner.clientWidth;
 
             const progress = getRunnerPosition(
-                e.clientX - containerRef.getBoundingClientRect().left,
+                e.clientX - container.getBoundingClientRect().left,
                 containerWidth - runnerWidth
             );
 
-            runnerRef.style.transform = `translateX(${progress}px)`;
-            completedLineRef.style.transform = `scaleX(${
+            runner.style.transform = `translateX(${progress}px)`;
+            completedLine.style.transform = `scaleX(${
                 (progress + runnerWidth) / (containerWidth / 100) / 100
             })`;
         };
 
-        runnerRef.addEventListener('mousedown', (event) => {
-            event.preventDefault();
+        const handleMouseDown = (e: MouseEvent) => {
             document.addEventListener('mouseup', handleMouseUp);
-            containerRef.addEventListener('mousemove', handleMouseMove);
-        });
+            container.addEventListener('mousemove', handleMouseMove);
+        };
+
+        runner.addEventListener('mousedown', handleMouseDown);
 
         return () => {
             document.removeEventListener('mouseup', handleMouseUp);
-            containerRef.removeEventListener('mousemove', handleMouseMove);
+            container.removeEventListener('mousemove', handleMouseMove);
+            runner.removeEventListener('mousedown', handleMouseDown);
         };
     }, []);
 
@@ -66,20 +67,20 @@ export const ProgressBar = () => {
         <div className={styles.progressBar}>
             <div
                 className={styles.container}
-                ref={container}
+                ref={containerRef}
                 data-testid="container"
             >
                 <div className={styles.progressLineContainer}>
                     <div className={styles.defaultLine} />
                     <div
                         className={styles.completedLine}
-                        ref={completedLine}
+                        ref={completedLineRef}
                         data-testid="completed-line"
                     />
                 </div>
                 <div
                     className={styles.runner}
-                    ref={runner}
+                    ref={runnerRef}
                     data-testid="runner"
                 />
             </div>
