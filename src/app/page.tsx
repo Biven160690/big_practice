@@ -1,4 +1,5 @@
 import { AnimationElements } from './components/animation/AnimationElements';
+import { ProgressBar } from './components/progressBar/ProgressBar';
 import styles from './page.module.scss';
 
 export default function App() {
@@ -7,6 +8,8 @@ export default function App() {
             <div className={styles.container}>
                 <div className={styles.animatedContainer}>
                     <AnimationElements />
+                <div className={styles.progressBarContainer}>
+                    <ProgressBar />
                 </div>
             </div>
         </div>
