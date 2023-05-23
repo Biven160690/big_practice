@@ -8,6 +8,7 @@ export default function App() {
             <div className={styles.container}>
                 <div className={styles.animatedContainer}>
                     <AnimationElements />
+                </div>
                 <div className={styles.progressBarContainer}>
                     <ProgressBar />
                 </div>
