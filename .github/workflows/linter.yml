@@ -18,4 +18,3 @@ jobs:
         run: npm ci   
       - name: Run lInt
         run: npm run lint
-    
