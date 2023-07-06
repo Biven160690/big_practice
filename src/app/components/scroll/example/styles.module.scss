@@ -1,0 +1,162 @@
+%block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // padding: 0 7px;
+    // box-sizing: content-box;
+}
+
+%card {
+    width: 112px;
+    height: 112px;
+    background-color: #0f36e2;
+    border-radius: 7px;
+    color: black;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:not(:last-child) {
+        margin-right: 7px;
+    }
+}
+
+%body {
+    width: 840px;
+    height: 140px;
+    border-radius: 7px;
+    background-color: #fdfbfb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container,
+.sliderAre,
+.infiniteCarouselAre {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.horizonScroll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -55px;
+    margin-bottom: 15px;
+
+    select {
+        margin-right: 15px;
+    }
+
+    &__body {
+        @extend %body;
+
+    }
+
+    &__block {
+        @extend %block;
+    }
+
+    &__card {
+        @extend %card;
+    }
+}
+
+.defaultCarousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__body {
+        @extend %body;
+    }
+
+    &__block {
+        @extend %block;
+    }
+
+    &__card {
+        @extend %card;
+    }
+
+    &__button {
+        padding: 7px 10px;
+
+        &_left {
+            margin-right: 10px;
+        }
+
+        &_right {
+            margin-left: 10px;
+        }
+    }
+}
+
+.infiniteCarousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__body {
+        position: relative;
+        width: 347px;
+        height: 140px;
+        border-radius: 7px;
+        background-color: #fdfbfb;
+        overflow: hidden;
+    }
+
+    &__card {
+        width: 112px;
+        height: 112px;
+        background-color: #0f36e2;
+        border-radius: 7px;
+        color: black;
+        font-size: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all .35s;
+    }
+
+    &__button {
+        padding: 7px 10px;
+
+        &_left {
+            margin-right: 10px;
+        }
+
+        &_right {
+            margin-left: 10px;
+        }
+    }
+}
+
+.verticalScroll {
+    width: 150px;
+    height: 420px;
+    border-radius: 7px;
+    background-color: #fdfbfb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 7px 0;
+    }
+
+    &__card {
+        @extend %card;
+
+        &:not(:first-child) {
+            margin-top: 7px;
+        }
+    }
+}
