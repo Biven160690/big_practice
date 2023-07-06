@@ -1,5 +1,8 @@
+'use client';
+
 import { AnimationElements } from './components/animation/AnimationElements';
 import { ProgressBar } from './components/progressBar/ProgressBar';
+import { TabPanel } from './components/tabs/example-1/TabPanel';
 import styles from './page.module.scss';
 
 export default function App() {
@@ -11,6 +14,9 @@ export default function App() {
                 </div>
                 <div className={styles.progressBarContainer}>
                     <ProgressBar />
+                </div>
+                <div className={styles.tabsContainer}>
+                    <TabPanel />
                 </div>
             </div>
         </div>
