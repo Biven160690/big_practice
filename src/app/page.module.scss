@@ -1,13 +1,17 @@
 .wrapper {
-  min-height: 100%;
-  display: flex;
-  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .container {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-end;
   flex-wrap: wrap;
   padding: 5rem;
 }
@@ -20,6 +24,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 3rem;
 }
 
 .progressBarContainer {
@@ -30,15 +35,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 5rem;
+  margin: 3rem;
 }
 
 .tabsContainer {
-  width: 50rem;
+  width: 48rem;
   height: 10rem;
   border-radius: 1rem;
   background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 3rem;
 }
