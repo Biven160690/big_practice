@@ -64,7 +64,7 @@ export const ProgressBar = () => {
     }, []);
 
     return (
-        <div className='prorr'>
+        <div className='progressBar'>
             <div
                 className={styles.container}
                 ref={containerRef}
