@@ -3,6 +3,11 @@
 import { AnimationElements } from './components/animation/AnimationElements';
 import { ProgressBar } from './components/progressBar/ProgressBar';
 import { TabPanel } from './components/tabs/example-1/TabPanel';
+import { HorizonScroll } from './components/scroll/example/HorizonScroll';
+import { DefaultCarousel } from './components/scroll/example/DefaultCarousel';
+import { VerticalScroll } from './components/scroll/example/VerticalScroll';
+import { InfiniteCarousel } from './components/scroll/example/InfiniteCarousel';
+
 import styles from './page.module.scss';
 
 export default function App() {
@@ -17,6 +22,18 @@ export default function App() {
                 </div>
                 <div className={styles.tabsContainer}>
                     <TabPanel />
+                </div>
+                <div className={styles.horizonContainer}>
+                    <HorizonScroll />
+                </div>
+                <div className={styles.verticalContainer}>
+                    <VerticalScroll />
+                </div>
+                <div className={styles.carouselContainer}>
+                    <InfiniteCarousel />
+                </div>
+                <div className={styles.horizonContainer}>
+                    <DefaultCarousel />
                 </div>
             </div>
         </div>
