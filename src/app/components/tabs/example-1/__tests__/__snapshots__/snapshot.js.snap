@@ -158,27 +158,114 @@ exports[`renders TabPanel 1`] = `
   <div
     class="c0"
   >
-    <button
-      class="c1"
-    >
-      Tab 
-    </button>
-    <button
-      class="c2"
-    >
-      Tab 
-    </button>
-    <button
-      class="c2"
-    >
-      Tab 
-    </button>
-    <button
-      class="c2"
-      disabled=""
-    >
-      Tab
-    </button>
+    <div>
+      <div>
+        <button
+          class="c1"
+        >
+          Tab 
+        </button>
+      </div>
+      <div
+        class="content"
+      >
+        <div
+          class="example"
+        >
+          <div
+            class="title"
+          >
+            Hello I am tooltip
+          </div>
+          <div
+            class="text"
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, atque eligendi eum laudantium illum, a maiores soluta odit doloremque ipsum nostrum error. Fugit magnam sint maiores, vero quae repellendus ad!
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <button
+          class="c2"
+        >
+          Tab 
+        </button>
+      </div>
+      <div
+        class="content"
+      >
+        <div
+          class="example"
+        >
+          <div
+            class="title"
+          >
+            Hello I am tooltip
+          </div>
+          <div
+            class="text"
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, atque eligendi eum laudantium illum, a maiores soluta odit doloremque ipsum nostrum error. Fugit magnam sint maiores, vero quae repellendus ad!
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <button
+          class="c2"
+        >
+          Tab 
+        </button>
+      </div>
+      <div
+        class="content"
+      >
+        <div
+          class="example"
+        >
+          <div
+            class="title"
+          >
+            Hello I am tooltip
+          </div>
+          <div
+            class="text"
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, atque eligendi eum laudantium illum, a maiores soluta odit doloremque ipsum nostrum error. Fugit magnam sint maiores, vero quae repellendus ad!
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <button
+          class="c2"
+        >
+          Tab 
+        </button>
+      </div>
+      <div
+        class="content"
+      >
+        <div
+          class="example"
+        >
+          <div
+            class="title"
+          >
+            Hello I am tooltip
+          </div>
+          <div
+            class="text"
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, atque eligendi eum laudantium illum, a maiores soluta odit doloremque ipsum nostrum error. Fugit magnam sint maiores, vero quae repellendus ad!
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;
