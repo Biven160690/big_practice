@@ -1,0 +1,24 @@
+.base {
+    width: 800px;
+    height: 400px;
+    display: flex;
+}
+
+.card {
+    border-radius: 50px;
+    flex: .6;
+    background: no-repeat center / cover;
+    transition: flex .2s;
+
+    &:not(:first-child) {
+        margin-left: 10px;
+    }
+
+    &__active {
+        flex: 4;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}

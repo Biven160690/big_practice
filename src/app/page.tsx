@@ -9,6 +9,8 @@ import { VerticalScroll } from './components/scroll/example/VerticalScroll';
 import { InfiniteCarousel } from './components/scroll/example/InfiniteCarousel';
 
 import styles from './page.module.scss';
+import { ExpandingCards } from './components/expandingCards';
+import { ProgressBarSteps } from './components/progressBarSteps';
 
 export default function App() {
     return (
@@ -34,6 +36,12 @@ export default function App() {
                 </div>
                 <div className={styles.horizonContainer}>
                     <DefaultCarousel />
+                </div>
+                <div className={styles.expandingCards}>
+                    <ExpandingCards />
+                </div>
+                <div className={styles.progressBarSteps}>
+                    <ProgressBarSteps />
                 </div>
             </div>
         </div>
