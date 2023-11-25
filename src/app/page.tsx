@@ -9,8 +9,10 @@ import { VerticalScroll } from './components/scroll/example/VerticalScroll';
 import { InfiniteCarousel } from './components/scroll/example/InfiniteCarousel';
 
 import styles from './page.module.scss';
-import { ExpandingCards } from './components/expandingCards';
-import { ProgressBarSteps } from './components/progressBarSteps';
+import { ExpandingCards } from './components/50_projects/expandingCards';
+import { ProgressBarSteps } from './components/50_projects/progressBarSteps';
+import { RotatingBG } from './components/50_projects/rotatingBG';
+import { HiddenSearch } from './components/50_projects/hiddenSearch';
 
 export default function App() {
     return (
@@ -42,6 +44,12 @@ export default function App() {
                 </div>
                 <div className={styles.progressBarSteps}>
                     <ProgressBarSteps />
+                </div>
+                <div className={styles.rotatingBG}>
+                    <RotatingBG />
+                </div>
+                <div className={styles.hiddenSearch}>
+                    <HiddenSearch />
                 </div>
             </div>
         </div>
