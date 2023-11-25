@@ -1,0 +1,34 @@
+.base {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+}
+
+.container {
+    position: relative;
+}
+
+.input {
+    height: 50px;
+    width: 0px;
+    border: none;
+    transition: width 0.3s ease;
+
+    .base__show & {
+        width: 300px;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.button {
+    position: absolute;
+    height: 52px;
+    width: 50px;
+    border: none;
+    background: url('../../../../../public/search.png') no-repeat center / contain, rgb(255, 255, 255);
+    cursor: pointer;
+}
