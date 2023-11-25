@@ -30,7 +30,7 @@ export const BlurryLoading = () => {
         number.to((val) => {
             const flooredNumber = Math.floor(val);
 
-            bg.style.filter = `${4 / flooredNumber}px`;
+            bg.style.filter = `blur(${4 / flooredNumber}px)`;
             numbers.style.opacity = `${1 - (.99 * flooredNumber) / 100}`;
         });
 

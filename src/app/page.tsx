@@ -19,7 +19,7 @@ export default function App() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                {/* <div className={styles.animatedContainer}>
+                <div className={styles.animatedContainer}>
                     <AnimationElements />
                 </div>
                 <div className={styles.progressBarContainer}>
@@ -51,7 +51,7 @@ export default function App() {
                 </div>
                 <div className={styles.hiddenSearch}>
                     <HiddenSearch />
-                </div> */}
+                </div>
                 <div className={styles.blurry}>
                     <BlurryLoading />
                 </div>
