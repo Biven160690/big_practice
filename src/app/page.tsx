@@ -13,12 +13,13 @@ import { ExpandingCards } from './components/50_projects/expandingCards';
 import { ProgressBarSteps } from './components/50_projects/progressBarSteps';
 import { RotatingBG } from './components/50_projects/rotatingBG';
 import { HiddenSearch } from './components/50_projects/hiddenSearch';
+import { BlurryLoading } from './components/50_projects/blurryLoading';
 
 export default function App() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                <div className={styles.animatedContainer}>
+                {/* <div className={styles.animatedContainer}>
                     <AnimationElements />
                 </div>
                 <div className={styles.progressBarContainer}>
@@ -50,6 +51,9 @@ export default function App() {
                 </div>
                 <div className={styles.hiddenSearch}>
                     <HiddenSearch />
+                </div> */}
+                <div className={styles.blurry}>
+                    <BlurryLoading />
                 </div>
             </div>
         </div>
