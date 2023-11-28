@@ -1,0 +1,40 @@
+.block {
+    width: 400px;
+    height: 500px;
+    border: 1px solid rgb(54, 54, 54);
+    border-radius: 10px;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 0 10px;
+}
+
+.container {
+    width: 100%;
+    margin-top: 15px;
+    overflow-x: hidden;
+
+}
+
+.card {
+    width: 200px;
+    height: 150px;
+    background-color: rgba(17, 0, 255, .3);
+    margin: 0 auto;
+    border-radius: 10px;
+    transform: translateX(-250px);
+    transition: all .2s;
+    opacity: 0;
+
+    &:not(:first-child) {
+        margin-top: 10px;
+    }
+
+    &:nth-of-type(odd) {
+        transform: translateX(250px);
+    }
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateX(0);
+}

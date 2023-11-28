@@ -13,6 +13,8 @@ import { ExpandingCards } from './components/50_projects/expandingCards';
 import { ProgressBarSteps } from './components/50_projects/progressBarSteps';
 import { RotatingBG } from './components/50_projects/rotatingBG';
 import { HiddenSearch } from './components/50_projects/hiddenSearch';
+import { BlurryLoading } from './components/50_projects/blurryLoading';
+import { ScrollAnimation } from './components/50_projects/scrollAnimation';
 
 export default function App() {
     return (
@@ -50,6 +52,12 @@ export default function App() {
                 </div>
                 <div className={styles.hiddenSearch}>
                     <HiddenSearch />
+                </div>
+                <div className={styles.blurry}>
+                    <BlurryLoading />
+                </div>
+                <div className={styles.scrollAnimation}>
+                    <ScrollAnimation />
                 </div>
             </div>
         </div>
