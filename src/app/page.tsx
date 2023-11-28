@@ -15,6 +15,8 @@ import { RotatingBG } from './components/50_projects/rotatingBG';
 import { HiddenSearch } from './components/50_projects/hiddenSearch';
 import { BlurryLoading } from './components/50_projects/blurryLoading';
 import { ScrollAnimation } from './components/50_projects/scrollAnimation';
+import { SplitLandingPage } from './components/50_projects/splitLandingPage';
+import { EventKeycodes } from './components/50_projects/eventKeycodes';
 
 export default function App() {
     return (
@@ -58,6 +60,12 @@ export default function App() {
                 </div>
                 <div className={styles.scrollAnimation}>
                     <ScrollAnimation />
+                </div>
+                <div className={styles.splitLandingPage}>
+                    <SplitLandingPage />
+                </div>
+                <div className={styles.eventKeycodes}>
+                    <EventKeycodes />
                 </div>
             </div>
         </div>
