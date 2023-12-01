@@ -17,6 +17,7 @@ import { BlurryLoading } from './components/50_projects/blurryLoading';
 import { ScrollAnimation } from './components/50_projects/scrollAnimation';
 import { SplitLandingPage } from './components/50_projects/splitLandingPage';
 import { EventKeycodes } from './components/50_projects/eventKeycodes';
+import { RandomChoicePicker } from './components/50_projects/randomChoicePicker';
 
 export default function App() {
     return (
@@ -66,6 +67,9 @@ export default function App() {
                 </div>
                 <div className={styles.eventKeycodes}>
                     <EventKeycodes />
+                </div>
+                <div className={styles.random}>
+                    <RandomChoicePicker />
                 </div>
             </div>
         </div>
