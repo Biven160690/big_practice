@@ -49,7 +49,7 @@ export const DrinkWater = () => {
         setActiveIndex((prev) => (prev === index ? index - 1 : index));
 
     const { fullContainerPercent, emptyContainerPercent } =
-        getContainerMeasurement(activeIndex === -1 ? 0 : activeIndex + 1);
+        getContainerMeasurement(activeIndex + 1);
 
     return (
         <div className={styles.base}>
