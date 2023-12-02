@@ -18,6 +18,7 @@ import { ScrollAnimation } from './components/50_projects/scrollAnimation';
 import { SplitLandingPage } from './components/50_projects/splitLandingPage';
 import { EventKeycodes } from './components/50_projects/eventKeycodes';
 import { RandomChoicePicker } from './components/50_projects/randomChoicePicker';
+import { DrinkWater } from './components/50_projects/drinkWater';
 
 export default function App() {
     return (
@@ -70,6 +71,9 @@ export default function App() {
                 </div>
                 <div className={styles.random}>
                     <RandomChoicePicker />
+                </div>
+                <div className={styles.drinkWater}>
+                    <DrinkWater />
                 </div>
             </div>
         </div>
