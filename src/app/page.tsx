@@ -19,6 +19,7 @@ import { SplitLandingPage } from './components/50_projects/splitLandingPage';
 import { EventKeycodes } from './components/50_projects/eventKeycodes';
 import { RandomChoicePicker } from './components/50_projects/randomChoicePicker';
 import { DrinkWater } from './components/50_projects/drinkWater';
+import { Timer } from './components/50_projects/timer';
 
 export default function App() {
     return (
@@ -74,6 +75,9 @@ export default function App() {
                 </div>
                 <div className={styles.drinkWater}>
                     <DrinkWater />
+                </div>
+                <div className={styles.timer}>
+                    <Timer />
                 </div>
             </div>
         </div>
