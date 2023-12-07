@@ -1,0 +1,55 @@
+@mixin arrowStyles($width, $color) {
+    width: #{$width}px;
+    height: 100%;
+    background-color: $color;
+}
+
+.base {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeBlock {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 1px rgb(77, 70, 70) solid;
+    position: relative;
+}
+
+.arrowContaner {
+    position: absolute;
+    left: 50%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    transform-origin: center bottom;
+    transform: rotate(0);
+
+    &:first-child {
+        z-index: 5;
+    }
+}
+
+.centerPoint {
+    position: absolute;
+    bottom: -5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(175, 0, 0);
+}
+
+.second {
+    @include arrowStyles(1, rgb(175, 0, 0));
+}
+
+.minut {
+    @include arrowStyles(2, rgb(0, 87, 3));
+}
+
+.hour {
+    @include arrowStyles(4, rgb(192, 175, 23));
+}
