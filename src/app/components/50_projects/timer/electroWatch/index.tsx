@@ -1,35 +1,53 @@
-"use client";
+'use client';
 
-import React from "react";
-import styles from "./styles.module.scss";
-import { getStartingPosition, PositionArrows } from "../index";
+import React from 'react';
+import styles from './styles.module.scss';
 
-const STARTING_HORDE = 1;
+export type PositionArrows = {
+    second: string | number;
+    minute: string | number;
+    hour: number;
+};
+
+const transformTime = (time: number) => (time < 10 ? `0${time}` : time);
+
+export const getStartingPosition = () => {
+    const currentDate = new Date();
+    const minute = transformTime(currentDate.getMinutes());
+    const hour = currentDate.getHours() % 12 || 12;
+    const second = transformTime(currentDate.getSeconds());
+
+    return {
+        second,
+        minute,
+        hour,
+    };
+};
 
 export const ElectroWatch = () => {
-  const [positionArrow, setPositionArrow] = React.useState<PositionArrows>(() =>
-    getStartingPosition(STARTING_HORDE)
-  );
+    const [positionArrow, setPositionArrow] = React.useState<PositionArrows>(
+        () => getStartingPosition()
+    );
 
-  React.useEffect(() => {
-    const intervalId = setInterval(() => {
-      const currentDate = new Date();
+    React.useEffect(() => {
+        const intervalId = setInterval(() => {
+            const { second, minute, hour } = getStartingPosition();
 
-      setPositionArrow({
-        second: currentDate.getSeconds(),
-        minute: currentDate.getMinutes(),
-        hour: currentDate.getHours() % 12 || 12,
-      });
-    }, 1000);
+            setPositionArrow({
+                second,
+                minute,
+                hour,
+            });
+        }, 1000);
 
-    return () => clearInterval(intervalId);
-  }, []);
+        return () => clearInterval(intervalId);
+    }, []);
 
-  return (
-    <div className={styles.base}>
-      <div>{positionArrow.hour}:</div>
-      <div>{positionArrow.minute}:</div>
-      <div>{positionArrow.second}</div>
-    </div>
-  );
+    return (
+        <div className={styles.base}>
+            <div>{positionArrow.hour}:</div>
+            <div>{positionArrow.minute}:</div>
+            <div>{positionArrow.second}</div>
+        </div>
+    );
 };
