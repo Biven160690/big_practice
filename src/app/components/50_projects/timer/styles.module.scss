@@ -18,7 +18,7 @@
     position: relative;
 }
 
-.arrowContaner {
+.arrowContainer {
     position: absolute;
     left: 50%;
     height: 50%;
@@ -46,8 +46,8 @@
     @include arrowStyles(1, rgb(175, 0, 0));
 }
 
-.minut {
-    @include arrowStyles(2, rgb(0, 87, 3));
+.minute {
+    @include arrowStyles(1, rgb(0, 87, 3));
 }
 
 .hour {

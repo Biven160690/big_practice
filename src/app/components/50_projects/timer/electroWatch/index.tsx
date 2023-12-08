@@ -4,11 +4,11 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { getStartingPosition, PositionArrows } from "../index";
 
-const STARTING_HORD = 1;
+const STARTING_HORDE = 1;
 
 export const ElectroWatch = () => {
   const [positionArrow, setPositionArrow] = React.useState<PositionArrows>(() =>
-    getStartingPosition(STARTING_HORD)
+    getStartingPosition(STARTING_HORDE)
   );
 
   React.useEffect(() => {
@@ -17,8 +17,8 @@ export const ElectroWatch = () => {
 
       setPositionArrow({
         second: currentDate.getSeconds(),
-        minut: currentDate.getMinutes(),
-        hour: currentDate.getHours(),
+        minute: currentDate.getMinutes(),
+        hour: currentDate.getHours() % 12 || 12,
       });
     }, 1000);
 
@@ -28,7 +28,7 @@ export const ElectroWatch = () => {
   return (
     <div className={styles.base}>
       <div>{positionArrow.hour}:</div>
-      <div>{positionArrow.minut}:</div>
+      <div>{positionArrow.minute}:</div>
       <div>{positionArrow.second}</div>
     </div>
   );
