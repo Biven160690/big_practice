@@ -20,12 +20,13 @@ import { EventKeycodes } from './components/50_projects/eventKeycodes';
 import { RandomChoicePicker } from './components/50_projects/randomChoicePicker';
 import { DrinkWater } from './components/50_projects/drinkWater';
 import { Timer } from './components/50_projects/timer';
+import { ButtonEffect } from './components/50_projects/buttonEffect';
 
 export default function App() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                {/* <div className={styles.animatedContainer}>
+                <div className={styles.animatedContainer}>
                     <AnimationElements />
                 </div>
                 <div className={styles.progressBarContainer}>
@@ -75,9 +76,12 @@ export default function App() {
                 </div>
                 <div className={styles.drinkWater}>
                     <DrinkWater />
-                </div> */}
+                </div>
                 <div className={styles.timer}>
                     <Timer />
+                </div>
+                <div className={styles.buttonEffect}>
+                    <ButtonEffect/>
                 </div>
             </div>
         </div>

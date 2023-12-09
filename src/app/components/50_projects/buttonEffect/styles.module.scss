@@ -1,0 +1,45 @@
+.button {
+    background-color: purple;
+    color: #fff;
+    border: 1px purple solid;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 20px 30px;
+    overflow: hidden;
+    margin: 10px 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.circle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0;
+    transform: scale(0);
+
+    &__show {
+        animation: show-circle .4s forwards linear;
+    }
+}
+
+@keyframes show-circle {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    30%,
+    40%,
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(20);
+    }
+}
