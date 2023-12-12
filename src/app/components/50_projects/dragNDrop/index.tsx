@@ -26,8 +26,9 @@ export const DragNDrop = () => {
                         <div
                             className={cx(
                                 styles.img,
-                                hoveredElement >= selectedCard && styles.img__startDrag,
-                                hoveredElement > index && styles.img__finishDrag,
+                                hoveredElement > -1 && styles.img__startDrag,
+                                hoveredElement !== selectedCard &&
+                                    styles.img__finishDrag
                             )}
                             draggable
                             onDragEnd={onDragEnd}
