@@ -4,8 +4,8 @@ import React from 'react';
 import styles from './styles.module.scss';
 
 // different approach:
-// you can use setTimeout(() => circle.remove(), 500) 
-// the first - you should add classes of animation when event of click was happened 
+// you can use setTimeout(() => circle.remove(), 500)
+// the first - you should add classes of animation when event of click was happened
 // the second - you should remove classes of animation, but you set duration inside setTimeout equals duration of animation
 
 export const ButtonEffect = () => {
@@ -20,10 +20,9 @@ export const ButtonEffect = () => {
             return;
         }
 
-        const { top, left } = button.getBoundingClientRect();
-        const { width, height } = circle.getBoundingClientRect();
-
         const handleClick = (event: MouseEvent) => {
+            const { top, left } = button.getBoundingClientRect();
+            const { width, height } = circle.getBoundingClientRect();
             const { clientX, clientY } = event;
 
             circle.style.top = `${clientY - top - height / 2}px`;
@@ -32,7 +31,7 @@ export const ButtonEffect = () => {
         };
 
         const handleAnimationend = () => {
-            circle.classList.toggle(styles.circle__show);
+            circle.classList.remove(styles.circle__show)
         };
 
         button.addEventListener('click', handleClick);
