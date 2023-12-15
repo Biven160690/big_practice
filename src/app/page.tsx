@@ -22,12 +22,13 @@ import { DrinkWater } from './components/50_projects/drinkWater';
 import { Timer } from './components/50_projects/timer';
 import { ButtonEffect } from './components/50_projects/buttonEffect';
 import { DragNDrop } from './components/50_projects/dragNDrop';
+import { DrawPlace } from './components/50_projects/DrawPlace';
 
 export default function App() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                {/* <div className={styles.animatedContainer}>
+                <div className={styles.animatedContainer}>
                     <AnimationElements />
                 </div>
                 <div className={styles.progressBarContainer}>
@@ -78,14 +79,17 @@ export default function App() {
                 <div className={styles.drinkWater}>
                     <DrinkWater />
                 </div>
-                <div className={styles.timer}>
+                {/* <div className={styles.timer}>
                     <Timer />
-                </div>
+                </div> */}
                 <div className={styles.buttonEffect}>
                     <ButtonEffect/>
-                </div> */}
+                </div>
                 <div className={styles.dragNDrop}>
                     <DragNDrop />
+                </div>
+                <div className={styles.drawPlace}>
+                    <DrawPlace />
                 </div>
             </div>
         </div>
