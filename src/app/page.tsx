@@ -21,12 +21,16 @@ import { RandomChoicePicker } from './components/50_projects/randomChoicePicker'
 import { DrinkWater } from './components/50_projects/drinkWater';
 import { Timer } from './components/50_projects/timer';
 import { ButtonEffect } from './components/50_projects/buttonEffect';
+import { DragNDrop } from './components/50_projects/dragNDrop';
+import { DrawPlace } from './components/50_projects/DrawPlace';
+import { KineticLoader } from './components/50_projects/kineticLoader';
+import { Placeholder } from './components/50_projects/placeholder';
 
 export default function App() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                <div className={styles.animatedContainer}>
+                {/* <div className={styles.animatedContainer}>
                     <AnimationElements />
                 </div>
                 <div className={styles.progressBarContainer}>
@@ -82,6 +86,19 @@ export default function App() {
                 </div>
                 <div className={styles.buttonEffect}>
                     <ButtonEffect/>
+                </div>
+                <div className={styles.dragNDrop}>
+                    <DragNDrop />
+                </div>
+                <div className={styles.drawPlace}>
+                    <DrawPlace />
+                </div> */}
+                {/* <div className={styles.kineticLoader}>
+                    <KineticLoader />
+                </div> */}
+
+                <div className={styles.placeholder}>
+                    <Placeholder />
                 </div>
             </div>
         </div>
