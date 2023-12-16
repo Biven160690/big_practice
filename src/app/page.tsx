@@ -24,6 +24,7 @@ import { ButtonEffect } from './components/50_projects/buttonEffect';
 import { DragNDrop } from './components/50_projects/dragNDrop';
 import { DrawPlace } from './components/50_projects/DrawPlace';
 import { KineticLoader } from './components/50_projects/kineticLoader';
+import { Placeholder } from './components/50_projects/placeholder';
 
 export default function App() {
     return (
@@ -92,8 +93,12 @@ export default function App() {
                 <div className={styles.drawPlace}>
                     <DrawPlace />
                 </div> */}
-                <div className={styles.kineticLoader}>
+                {/* <div className={styles.kineticLoader}>
                     <KineticLoader />
+                </div> */}
+
+                <div className={styles.placeholder}>
+                    <Placeholder />
                 </div>
             </div>
         </div>

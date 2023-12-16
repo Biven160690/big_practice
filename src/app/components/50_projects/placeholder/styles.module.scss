@@ -1,0 +1,116 @@
+@mixin loadingAnimation($width, $height, $duration, $animationName, $delay: 0) {
+    width: #{$width}px;
+    height: #{$height}px;
+    background-color: #c4c4c4;
+    border-radius: 10px;
+    overflow: hidden;
+
+    &::after {
+        display: block;
+        content: '';
+        width: 10px;
+        height: 100%;
+        background-color: #b9b7b7;
+        filter: blur(5px);
+        animation: #{$animationName} #{$duration}s linear #{$delay}s infinite forwards;
+    }
+
+    @keyframes #{$animationName} {
+        0% {
+            transform: translate(-10px);
+        }
+
+        100% {
+            transform: translate(#{$width}px);
+        }
+    }
+}
+
+$text-color: #777;
+
+.base {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 350px;
+}
+
+.img {
+    width: 350px;
+    height: 200px;
+    background: no-repeat center / cover;
+
+    .base__loading & {
+        @include loadingAnimation(350, 200, 1, img)
+    }
+}
+
+.content {
+    margin: 30px 0 20px 0;
+    padding: 0 30px;
+}
+
+.title {
+    .base__loading & {
+        @include loadingAnimation(150, 10, 1, title)
+    }
+}
+
+.text {
+    color: $text-color;
+    margin-top: 10px;
+
+    .base__loading & {
+        @include loadingAnimation(80, 10, 1, text)
+    }
+}
+
+.userInfo {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0 30px 30px 30px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: no-repeat center / cover;
+
+    .base__loading & {
+        @include loadingAnimation(40, 40, 1, avatar);
+        border-radius: 50%;
+    }
+}
+
+.description {
+    margin-left: 10px;
+}
+
+.fullName {
+    display: flex;
+}
+
+.firstName {
+    color: #000000;
+    margin-right: 5px;
+
+    .base__loading & {
+        @include loadingAnimation(70, 10, 1, firstName);
+    }
+}
+
+.lastName {
+    color: $text-color;
+}
+
+.birthday {
+    color: $text-color;
+
+    .base__loading & {
+        @include loadingAnimation(50, 10, 1, birthday);
+        display: block;
+        margin-top: 10px;
+    }
+}
