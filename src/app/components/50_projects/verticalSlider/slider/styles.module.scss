@@ -1,0 +1,61 @@
+%flexContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+$common-white: #fff;
+
+.base {
+    position: relative;
+    overflow: hidden;
+}
+
+.cardContainer {
+    @extend %flexContainer;
+    height: 100%;
+    width: 100%;
+}
+
+.content {
+    text-align: center;
+}
+
+.title {
+    color: $common-white;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.text {
+    color: $common-white; 
+}
+
+.button {
+    @extend %flexContainer;
+    background-color: $common-white;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 15px;
+    position: absolute;
+}
+
+.arrow {
+    width: 24px;
+    height: 24px;
+    background: url(../../../../../../public/arrow.png) no-repeat center / contain;
+    opacity: .5;
+    transition: opacity .2s;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    transition: transform .3s ease-in-out;
+}

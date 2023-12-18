@@ -1,0 +1,35 @@
+.base {
+    width: 700px;
+    height: 450px;
+    display: flex;
+}
+
+.leftSlider {
+    flex: 0 0 40%;
+}
+
+.rightSlider {
+    flex: 0 0 60%;
+}
+
+.leftButton {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    top: 55%;
+    right: 0;
+}
+
+.rightButton {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    top: 43%;
+    left: 0;
+}
+
+.cardContainer {
+    background: no-repeat center / cover;
+}
+
+.rightArrow {
+    transform: rotate(180deg);
+}

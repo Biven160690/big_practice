@@ -25,6 +25,7 @@ import { DragNDrop } from './components/50_projects/dragNDrop';
 import { DrawPlace } from './components/50_projects/DrawPlace';
 import { KineticLoader } from './components/50_projects/kineticLoader';
 import { Placeholder } from './components/50_projects/placeholder';
+import { SliderContainer } from './components/50_projects/verticalSlider';
 
 export default function App() {
     return (
@@ -92,13 +93,16 @@ export default function App() {
                 </div>
                 <div className={styles.drawPlace}>
                     <DrawPlace />
-                </div> */}
-                {/* <div className={styles.kineticLoader}>
+                </div>
+                <div className={styles.kineticLoader}>
                     <KineticLoader />
-                </div> */}
-
+                </div>
                 <div className={styles.placeholder}>
                     <Placeholder />
+                </div> */}
+
+                <div className={styles.sliderContainer}>
+                    <SliderContainer />
                 </div>
             </div>
         </div>
