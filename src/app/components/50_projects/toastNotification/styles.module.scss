@@ -1,0 +1,34 @@
+.button {
+    background-color: #ffffff;
+    color: rebeccapurple;
+    font-family: inherit;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.notification {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 102px;
+    background-color: #ffffff;
+    color: rebeccapurple;
+    font-family: inherit;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 5px;
+
+    &:not(:last-child) {
+        margin-bottom: 10px;
+    }
+}
+
+.container {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    z-index: 10;
+}

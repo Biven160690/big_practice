@@ -149,7 +149,8 @@
 }
 
 .kineticLoader {
-  margin: 30px;
+  position: relative;
+  margin: 50px;
 }
 
 .placeholder {
@@ -158,4 +159,9 @@
 
 .sliderContainer {
   margin: 30px;
+}
+
+.notification {
+  margin: 30px;
+
 }
