@@ -19,7 +19,7 @@ export const Tooltip = ({ children, content }: Props) => {
         const content = contentRef.current;
         const children = childrenRef.current;
 
-        if (!tooltip || !content || !children) {
+        if (!(tooltip && content && children)) {
             return;
         }
 
