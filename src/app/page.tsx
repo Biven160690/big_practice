@@ -27,12 +27,13 @@ import { KineticLoader } from './components/50_projects/kineticLoader';
 import { Placeholder } from './components/50_projects/placeholder';
 import { SliderContainer } from './components/50_projects/verticalSlider';
 import { ToastNotification } from './components/50_projects/toastNotification';
+import { Container } from './components/50_projects/githubProfile';
 
 export default function App() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                <div className={styles.animatedContainer}>
+                {/* <div className={styles.animatedContainer}>
                     <AnimationElements />
                 </div>
                 <div className={styles.progressBarContainer}>
@@ -97,16 +98,19 @@ export default function App() {
                 </div>
                 <div className={styles.kineticLoader}>
                     <KineticLoader />
-                </div>
+                </div> */}
                 <div className={styles.placeholder}>
                     <Placeholder />
                 </div>
-                <div className={styles.sliderContainer}>
+                {/* <div className={styles.sliderContainer}>
                     <SliderContainer />
                 </div>
                 <div className={styles.notification}>
                     <ToastNotification />
                 </div>
+                <div className={styles.githubProfile}>
+                    <Container />
+                </div> */}
             </div>
         </div>
     );
