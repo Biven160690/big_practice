@@ -30,10 +30,10 @@ export const Placeholder = () => {
         const intervalId = setInterval(() => {
             setData(mocks);
             setLoading(false);
-        }, 2000);
+        }, 50000);
 
         return () => clearInterval(intervalId);
-    });
+    }, []);
 
     return (
         <div className={cx(styles.base, loading && styles.base__loading)}>
