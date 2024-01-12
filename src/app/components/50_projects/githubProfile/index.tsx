@@ -3,99 +3,108 @@ import { Block, Input, Loader } from './styles';
 import { Card } from './card';
 import { ErrorContent } from './error';
 import { EmptyCard } from './card/emptyCard';
+import { initialState, reducer, UserProfile } from './reducer';
+import { requestInitial, getUserData, getRequestError, requestAbort } from './actions';
 
 const API_URL = 'https://api.github.com/users/';
 const REPO_PATH = '/repos?sort=created&per_page=3';
+const ABORTING_SIGNAL = 'abortingSignal';
 
-export type SelectFieldsArguments = {
+type UserProfileData = {
     avatar_url: string;
     followers: number;
     following: number;
     public_repos: number;
 };
 
-const fields: { [key: string]: string[] } = {
-    0: ['avatar_url', 'login', 'followers', 'following', 'public_repos'],
-    1: ['name', 'html_url'],
+type RepoData = {
+    name: string;
+    html_url: string;
+}[];
+
+type ResponseType = UserProfileData & RepoData;
+
+export type AbortResponse = React.MutableRefObject<{
+    userData: AbortController;
+    userRepos: AbortController;
+}>;
+
+const fields = {
+    user: ['avatar_url', 'followers', 'following', 'public_repos'],
+    repo: ['name', 'html_url'],
 };
 
-interface ResponseData {
-    [key: string]: unknown;
-}
-
-function selectFields<T extends ResponseData>(
-    data: T,
-    fields: (keyof T)[]
-): Pick<T, (typeof fields)[number]> {
-    const selectedData: Partial<Pick<T, (typeof fields)[number]>> = {};
+const collectUserProfile = (
+    item: { [key: string]: string },
+    fields: string[]
+) => {
+    const obj: { [key: string]: string[] | string } = {};
 
     fields.forEach((field) => {
-        selectedData[field] = data[field];
+        obj[field] = item[field];
     });
 
-    return selectedData as Pick<T, (typeof fields)[number]>;
-}
+    return obj;
+};
 
-const getData = (response: any[]): GitHubProfile => {
+const formattingData = (response: ResponseType[]) => {
     return response.reduce((acc, item) => {
-        if (item.hasOwnProperty(fields[0][0])) {
-            return { ...acc, ...selectFields(item, fields[0]) };
-        } else {
+        if (Array.isArray(item)) {
             return {
                 ...acc,
-                repos: item.map((result: any) => selectFields(result, fields[1])),
+                repos: item.map((item) =>
+                    collectUserProfile(item, fields.repo)
+                ),
             };
         }
-    }, {} as GitHubProfile);
+
+        return { ...acc, ...collectUserProfile(item, fields.user) };
+    }, {});
 };
 
-export type GitHubProfile = {
-    avatar_url: string;
-    login: string;
-    followers: number;
-    following: number;
-    public_repos: number;
-    repos: { name: string; html_url: string }[];
+export const abortResponses = (abortResponse: AbortResponse) => {
+    abortResponse.current.userData.abort();
+    abortResponse.current.userRepos.abort();
 };
 
-export type Error = {
-    name: string;
-    message: string;
-} | null;
+const updateResponseSignal = (abortResponse: AbortResponse) => {
+    abortResponse.current.userData = new AbortController();
+    abortResponse.current.userRepos = new AbortController();
+};
 
 export const Container = () => {
-    const [gitHubProfile, setGitHubProfile] =
-        React.useState<GitHubProfile | null>(null);
-    const [loading, setLoading] = React.useState<boolean>(false);
-    const [error, setError] = React.useState<Error>(null);
-    const inputRef = React.useRef<HTMLInputElement | null>(null);
+    const [state, dispatch] = React.useReducer(reducer, initialState);
 
-    const abortResponseUserData = new AbortController();
-    const abortResponseUserRepos = new AbortController();
+    const inputRef = React.useRef<HTMLInputElement | null>(null);
+    const timeoutId = React.useRef<NodeJS.Timeout>();
+    const abortResponse = React.useRef({
+        userData: new AbortController(),
+        userRepos: new AbortController(),
+    });
+
+    const { gitHubProfile, error, loading } = state;
 
     React.useEffect(() => {
         const fetchData = (inputData: string) => {
-            setLoading(true);
-            setError(null);
-            setGitHubProfile(null);
+            dispatch(requestInitial());
+
+            const { userRepos, userData } = abortResponse.current;
 
             const fetchPromise = Promise.allSettled([
                 fetch(`${API_URL}${inputData}${REPO_PATH}`, {
-                    signal: abortResponseUserRepos.signal,
+                    signal: userRepos.signal,
                 }),
 
                 fetch(`${API_URL}${inputData}`, {
-                    signal: abortResponseUserData.signal,
+                    signal: userData.signal,
                 }),
             ]);
 
-            const abortingSignal = new Promise((_, reject) =>
-                setTimeout(() => {
-                    reject(new Error('oops something went wrong'));
-                    abortResponseUserData.abort();
-                    abortResponseUserRepos.abort();
-                }, 5000)
-            );
+            const abortingSignal = new Promise((_, reject) => {
+                timeoutId.current = setTimeout(() => {
+                    reject({ name: ABORTING_SIGNAL, message: ABORTING_SIGNAL });
+                }, 10000);
+            });
 
             Promise.race([fetchPromise, abortingSignal])
                 .then((results) => {
@@ -103,40 +112,35 @@ export const Container = () => {
                         results as PromiseFulfilledResult<Response>[];
 
                     const responseOk = fulfilledResult.some(
-                        (element) => element.value.ok
+                        (element) => element.value?.ok
                     );
 
                     if (!responseOk) {
                         throw new Error(`HTTP error! Status: 404`);
                     }
 
-                    const response = fulfilledResult.reduce((acc, first) => {
-                        if (first.status === 'fulfilled') {
-                            acc.push(first.value.json());
-                            return acc;
-                        }
-                    }, []);
+                    const response = fulfilledResult
+                        .filter((response) => response.status === 'fulfilled')
+                        .map((response) => response.value.json());
 
-                    return Promise.all(response);
+                    return Promise.all(response) as unknown as ResponseType[];
                 })
                 .then((response) => {
-                    setLoading(false);
-                    setGitHubProfile(getData(response));
+                    dispatch(
+                        getUserData(formattingData(response) as UserProfile)
+                    );
+                    clearTimeout(timeoutId.current);
                 })
-                .catch((error) => {
-                    const { name, message } = error;
-
-                    if (error.name !== 'AbortError') {
-                        setLoading(false);
-                        setError({
-                            name,
-                            message,
-                        });
+                .catch((error: Error) => {
+                    if (error.name === ABORTING_SIGNAL) {                        
+                        dispatch(requestAbort(abortResponse));
                     }
+
+                    dispatch(getRequestError(error));
                 });
         };
 
-        const handleKey = (event: KeyboardEvent) => {
+        const handleKeyboardEvent = (event: KeyboardEvent) => {
             const input = inputRef.current;
 
             if (!input) {
@@ -145,8 +149,9 @@ export const Container = () => {
 
             if (event.key === 'Enter' && input.value !== '') {
                 if (loading) {
-                    abortResponseUserData.abort();
-                    abortResponseUserRepos.abort();
+                    abortResponses(abortResponse);
+                    updateResponseSignal(abortResponse);
+                    clearTimeout(timeoutId.current);
                 }
 
                 fetchData(input.value);
@@ -155,17 +160,20 @@ export const Container = () => {
             }
         };
 
-        document.addEventListener('keydown', handleKey);
+        document.addEventListener('keydown', handleKeyboardEvent);
 
-        return () => document.removeEventListener('keydown', handleKey);
-    }, [abortResponseUserData, abortResponseUserRepos, loading]);
+        return () =>
+            document.removeEventListener('keydown', handleKeyboardEvent);
+    }, [loading]);
+
+    console.log(state);
 
     React.useEffect(
         () => () => {
-            abortResponseUserData.abort();
-            abortResponseUserRepos.abort();
+            abortResponses(abortResponse);
+            clearTimeout(timeoutId.current);
         },
-        [abortResponseUserData, abortResponseUserRepos]
+        []
     );
 
     return (

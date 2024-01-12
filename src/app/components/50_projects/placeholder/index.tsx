@@ -30,7 +30,7 @@ export const Placeholder = () => {
         const intervalId = setInterval(() => {
             setData(mocks);
             setLoading(false);
-        }, 50000);
+        }, 2000);
 
         return () => clearInterval(intervalId);
     }, []);

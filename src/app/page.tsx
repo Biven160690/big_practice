@@ -98,19 +98,19 @@ export default function App() {
                 </div>
                 <div className={styles.kineticLoader}>
                     <KineticLoader />
-                </div> */}
-                <div className={styles.placeholder}>
+                </div> 
+                 <div className={styles.placeholder}>
                     <Placeholder />
-                </div>
-                {/* <div className={styles.sliderContainer}>
+                </div> 
+                <div className={styles.sliderContainer}>
                     <SliderContainer />
                 </div>
                 <div className={styles.notification}>
                     <ToastNotification />
-                </div>
-                <div className={styles.githubProfile}>
-                    <Container />
                 </div> */}
+                 <div className={styles.githubProfile}>
+                     <Container />
+                </div>
             </div>
         </div>
     );
