@@ -166,8 +166,6 @@ export const Container = () => {
             document.removeEventListener('keydown', handleKeyboardEvent);
     }, [loading]);
 
-    console.log(state);
-
     React.useEffect(
         () => () => {
             abortResponses(abortResponse);

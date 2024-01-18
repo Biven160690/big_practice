@@ -28,6 +28,8 @@ import { Placeholder } from './components/50_projects/placeholder';
 import { SliderContainer } from './components/50_projects/verticalSlider';
 import { ToastNotification } from './components/50_projects/toastNotification';
 import { Container } from './components/50_projects/githubProfile';
+import { DoubleClick } from './components/50_projects/doubleClick';
+import { AutoTextEffect } from './components/50_projects/autoTextEffect';
 
 export default function App() {
     return (
@@ -107,9 +109,16 @@ export default function App() {
                 </div>
                 <div className={styles.notification}>
                     <ToastNotification />
-                </div> */}
+                </div> 
                  <div className={styles.githubProfile}>
                      <Container />
+                </div>*/}
+
+                {/* <div className={styles.doubleClick}>
+                    <DoubleClick />
+                </div> */}
+                <div className={styles.textEffect}>
+                    <AutoTextEffect />
                 </div>
             </div>
         </div>

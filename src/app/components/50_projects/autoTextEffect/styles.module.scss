@@ -1,0 +1,31 @@
+
+.base {
+    background-color: darksalmon;
+    width: 350px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & + & {
+        margin-top: 15px;
+    }
+}
+
+.carriage {
+    width: 2px;
+    height: 35px;
+    background-color: rgb(0, 0, 0);
+    margin-left: 3px;
+    animation: raysAppearance .5s forwards linear infinite;
+}
+
+@keyframes raysAppearance {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
