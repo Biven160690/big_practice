@@ -30,12 +30,13 @@ import { ToastNotification } from './components/50_projects/toastNotification';
 import { Container } from './components/50_projects/githubProfile';
 import { DoubleClick } from './components/50_projects/doubleClick';
 import { AutoTextEffect } from './components/50_projects/autoTextEffect';
+import { PasswordGenerator } from './components/50_projects/passwordGenerator';
 
 export default function App() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                {/* <div className={styles.animatedContainer}>
+                <div className={styles.animatedContainer}>
                     <AnimationElements />
                 </div>
                 <div className={styles.progressBarContainer}>
@@ -112,13 +113,15 @@ export default function App() {
                 </div> 
                  <div className={styles.githubProfile}>
                      <Container />
-                </div>*/}
-
-                {/* <div className={styles.doubleClick}>
+                </div>
+                <div className={styles.doubleClick}>
                     <DoubleClick />
-                </div> */}
+                </div>
                 <div className={styles.textEffect}>
                     <AutoTextEffect />
+                </div>
+                <div className={styles.passwordGenerator}>
+                    <PasswordGenerator />
                 </div>
             </div>
         </div>
