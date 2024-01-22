@@ -31,11 +31,12 @@ import { Container } from './components/50_projects/githubProfile';
 import { DoubleClick } from './components/50_projects/doubleClick';
 import { AutoTextEffect } from './components/50_projects/autoTextEffect';
 import { PasswordGenerator } from './components/50_projects/passwordGenerator';
+import { GoodCheapFast } from './components/50_projects/goodCheapFast';
 
 export default function App() {
     return (
         <div className={styles.wrapper}>
-            <div className={styles.container}>
+            {/* <div className={styles.container}>
                 <div className={styles.animatedContainer}>
                     <AnimationElements />
                 </div>
@@ -122,7 +123,10 @@ export default function App() {
                 </div>
                 <div className={styles.passwordGenerator}>
                     <PasswordGenerator />
-                </div>
+                </div> 
+            </div>*/}
+            <div className={styles.goodCheapFast}>
+                <GoodCheapFast />
             </div>
         </div>
     );

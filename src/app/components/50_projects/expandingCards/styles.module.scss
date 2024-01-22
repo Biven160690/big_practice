@@ -8,7 +8,7 @@
     border-radius: 50px;
     flex: .6;
     background: no-repeat center / cover;
-    transition: flex .2s;
+    background-color: #000000;
 
     &:not(:first-child) {
         margin-left: 10px;
@@ -22,3 +22,4 @@
         cursor: pointer;
     }
 }
+
