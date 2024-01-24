@@ -1,0 +1,58 @@
+.base {
+    width: 800px;
+    height: 500px;
+    background-color: #7bdaf3;
+    position: relative;
+}
+
+.add {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background-color: #9ec862;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.edit, .delete {
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: #476819;
+}
+
+.delete {
+   margin-left: 5px;
+   margin-right: 5px;
+}
+
+.areaContainer {
+    margin-right: 15px;
+
+    & + & {
+        margin-right: 15px;
+    }
+}
+
+.controlPanel {
+    width: 100%;
+    height: 50px;
+    background-color: #9ec862;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 35px;
+
+}
