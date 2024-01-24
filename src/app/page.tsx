@@ -32,6 +32,7 @@ import { DoubleClick } from './components/50_projects/doubleClick';
 import { AutoTextEffect } from './components/50_projects/autoTextEffect';
 import { PasswordGenerator } from './components/50_projects/passwordGenerator';
 import { GoodCheapFast } from './components/50_projects/goodCheapFast';
+import { NotesApp } from './components/50_projects/notesApp';
 
 export default function App() {
     return (
@@ -102,18 +103,18 @@ export default function App() {
                 </div>
                 <div className={styles.kineticLoader}>
                     <KineticLoader />
-                </div> 
-                 <div className={styles.placeholder}>
+                </div>
+                <div className={styles.placeholder}>
                     <Placeholder />
-                </div> 
+                </div>
                 <div className={styles.sliderContainer}>
                     <SliderContainer />
                 </div>
                 <div className={styles.notification}>
                     <ToastNotification />
-                </div> 
-                 <div className={styles.githubProfile}>
-                     <Container />
+                </div>
+                <div className={styles.githubProfile}>
+                    <Container />
                 </div>
                 <div className={styles.doubleClick}>
                     <DoubleClick />
@@ -123,10 +124,13 @@ export default function App() {
                 </div>
                 <div className={styles.passwordGenerator}>
                     <PasswordGenerator />
-                </div> 
-            </div>*/}
-            <div className={styles.goodCheapFast}>
-                <GoodCheapFast />
+                </div>
+                <div className={styles.goodCheapFast}>
+                    <GoodCheapFast />
+                </div>
+            </div> */}
+            <div className={styles.notes}>
+                <NotesApp />
             </div>
         </div>
     );
