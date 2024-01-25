@@ -33,12 +33,13 @@ import { AutoTextEffect } from './components/50_projects/autoTextEffect';
 import { PasswordGenerator } from './components/50_projects/passwordGenerator';
 import { GoodCheapFast } from './components/50_projects/goodCheapFast';
 import { NotesApp } from './components/50_projects/notesApp';
+import { AnimatedCountdown } from './components/50_projects/animatedCountdown';
 
 export default function App() {
     return (
         <div className={styles.wrapper}>
-            {/* <div className={styles.container}>
-                <div className={styles.animatedContainer}>
+            <div className={styles.container}>
+                {/* <div className={styles.animatedContainer}>
                     <AnimationElements />
                 </div>
                 <div className={styles.progressBarContainer}>
@@ -128,10 +129,16 @@ export default function App() {
                 <div className={styles.goodCheapFast}>
                     <GoodCheapFast />
                 </div>
-            </div> */}
-            <div className={styles.notes}>
-                <NotesApp />
+                <div className={styles.notes}>
+                    <NotesApp />
+                </div> */}
+                <div className={styles.rotatioAnimatio}>
+                    <AnimatedCountdown />
+                </div>
             </div>
         </div>
     );
 }
+
+
+

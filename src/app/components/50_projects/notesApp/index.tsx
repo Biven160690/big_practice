@@ -12,6 +12,8 @@ export type LocalStorageData = {
     prevNotes: Notes;
 };
 
+// you can wrap childre components on memo, fn useCallback and update value from notes uses onChange
+
 export const LOCAL_STORAGE_KEY = 'notes';
 
 const getStorageData = () => {
