@@ -34,6 +34,7 @@ import { PasswordGenerator } from './components/50_projects/passwordGenerator';
 import { GoodCheapFast } from './components/50_projects/goodCheapFast';
 import { NotesApp } from './components/50_projects/notesApp';
 import { AnimatedCountdown } from './components/50_projects/animatedCountdown';
+import { ImageCarousel } from './components/50_projects/imageCarousel';
 
 export default function App() {
     return (
@@ -131,9 +132,12 @@ export default function App() {
                 </div>
                 <div className={styles.notes}>
                     <NotesApp />
-                </div> */}
-                <div className={styles.rotatioAnimatio}>
+                </div>
+                <div className={styles.animatedCountdown}>
                     <AnimatedCountdown />
+                </div> */}
+                <div className={styles.imageCarousel}>
+                    <ImageCarousel />
                 </div>
             </div>
         </div>
