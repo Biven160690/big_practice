@@ -17,7 +17,7 @@ export const Square = styled.div<{ $color: string }>`
     background-color: #1d1d1d;
     box-shadow: rgb(0, 0, 0) 0px 0px 2px;
     cursor: pointer;
-    transition: background-color 3.8s ease, box-shadow 3.8s ease;
+    transition: background-color 3.8s, box-shadow 3.8s;
 
     &:hover {
         background-color: ${({ $color }) => $color};
