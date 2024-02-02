@@ -35,6 +35,9 @@ import { GoodCheapFast } from './components/50_projects/goodCheapFast';
 import { NotesApp } from './components/50_projects/notesApp';
 import { AnimatedCountdown } from './components/50_projects/animatedCountdown';
 import { ImageCarousel } from './components/50_projects/imageCarousel';
+import { HoverBoard } from './components/50_projects/hoverBoard';
+import { VerifyAccount } from './components/50_projects/verifyAccount';
+import { LiveSearching } from './components/50_projects/liveSearching';
 
 export default function App() {
     return (
@@ -136,8 +139,18 @@ export default function App() {
                 <div className={styles.animatedCountdown}>
                     <AnimatedCountdown />
                 </div> */}
-                <div className={styles.imageCarousel}>
+                {/* <div className={styles.imageCarousel}>
                     <ImageCarousel />
+                </div> */}
+                {/* <div className={styles.hoverBoard}>
+                    <HoverBoard />
+                </div> */}
+
+                {/* <div className={styles.verifyAccount}>
+                    <VerifyAccount/>
+                </div> */}
+                <div className={styles.liveSearching}>
+                    <LiveSearching />
                 </div>
             </div>
         </div>
