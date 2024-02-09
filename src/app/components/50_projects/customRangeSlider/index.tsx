@@ -156,25 +156,21 @@ export const CustomRangeSlider = () => {
             isMouseDown = false;
         };
 
-        const handleMouseLeave = () => {
-            isMouseDown = false;
-        };
-
         const handleMouseDown = () => {
             isMouseDown = true;
         };
 
         runner.addEventListener('mouseup', handleMouseUp);
-        runner.addEventListener('mouseleave', handleMouseLeave);
+        document.addEventListener('mouseup', handleMouseUp);
         runner.addEventListener('mousedown', handleMouseDown);
-        baseContainer.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mousemove', handleMouseMove);
         baseContainer.addEventListener('click', handleOnClick);
 
         return () => {
             runner.removeEventListener('mouseup', handleMouseUp);
-            runner.removeEventListener('mouseleave', handleMouseLeave);
+            document.addEventListener('mouseup', handleMouseUp);
             runner.removeEventListener('mousedown', handleMouseDown);
-            baseContainer.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mousemove', handleMouseMove);
             baseContainer.removeEventListener('click', handleOnClick);
         };
     }, []);

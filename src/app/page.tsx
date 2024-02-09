@@ -34,11 +34,11 @@ import { PasswordGenerator } from './components/50_projects/passwordGenerator';
 import { GoodCheapFast } from './components/50_projects/goodCheapFast';
 import { NotesApp } from './components/50_projects/notesApp';
 import { AnimatedCountdown } from './components/50_projects/animatedCountdown';
+import { CustomRangeSlider } from './components/50_projects/customRangeSlider';
 import { ImageCarousel } from './components/50_projects/imageCarousel';
 import { HoverBoard } from './components/50_projects/hoverBoard';
 import { VerifyAccount } from './components/50_projects/verifyAccount';
 import { LiveSearching } from './components/50_projects/liveSearching';
-import { CustomRangeSlider } from './components/50_projects/customRangeSlider';
 
 export default function App() {
     return (
@@ -146,14 +146,12 @@ export default function App() {
                 <div className={styles.hoverBoard}>
                     <HoverBoard />
                 </div>
-
                 <div className={styles.verifyAccount}>
                     <VerifyAccount/>
                 </div>
                 <div className={styles.liveSearching}>
                     <LiveSearching />
-                </div>*/}
-
+                </div> */}
                 <div className={styles.ranger}>
                     <CustomRangeSlider />
                 </div>
