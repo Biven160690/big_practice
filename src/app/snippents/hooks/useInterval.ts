@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type ReturnType = { [ket: string]: () => void };
+export type ReturnType = { [key: string]: () => void };
 
 export const useInterval = (
     handler: () => void,
@@ -8,7 +8,7 @@ export const useInterval = (
 ): ReturnType => {
     const handlerRef = React.useRef<() => void>(handler);
     const delayRef = React.useRef<number | null>(delay);
-    const timeOutId = React.useRef<NodeJS.Timeout | null>(null);
+    const intervalId = React.useRef<NodeJS.Timeout | null>(null);
 
     React.useLayoutEffect(() => {
         handlerRef.current = handler;
@@ -16,18 +16,14 @@ export const useInterval = (
     });
 
     const start = React.useCallback(() => {
-        const delay = delayRef.current;
-
-        if (delay !== null) {
-            timeOutId.current = setInterval(() => handlerRef.current(), delay);
+        if (delayRef.current !== null) {
+            intervalId.current = setInterval(() => handlerRef.current(), delayRef.current);
         }
     }, []);
 
     const clear = React.useCallback(() => {
-        const id = timeOutId.current;
-
-        if (id !== null) {
-            clearTimeout(id);
+        if (intervalId.current !== null) {
+            clearTimeout(intervalId.current);
         }
     }, []);
 
