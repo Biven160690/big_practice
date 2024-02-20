@@ -17,24 +17,9 @@ export const useStorage = <T>(
         storage,
     });
 
-    const initialStorage = React.useCallback(() => {
-        const { defaultKey, defaultValue, storage } = storageRef.current;
-        const result = storage.getItem(defaultKey);
-
-        if (!result) {
-            storage.setItem(defaultKey, JSON.stringify(defaultValue));
-
-            return defaultValue;
-        }
-
-        return JSON.parse(result);
-    }, []);
-
-    const set = React.useCallback(<VT>
-        (value: VT, key: string = storageRef.current.defaultKey) => {
-            const data = JSON.stringify(value);
-            storageRef.current.storage.setItem(key, data);
-        },
+    const set = React.useCallback(
+        <VT>(value: VT, key: string = storageRef.current.defaultKey) =>
+            storageRef.current.storage.setItem(key, JSON.stringify(value)),
         []
     );
 
@@ -50,6 +35,19 @@ export const useStorage = <T>(
         },
         []
     );
+
+    const initialStorage = React.useCallback(() => {
+        const { defaultValue } = storageRef.current;
+        const result = get();
+
+        if (!result) {
+            set(defaultValue);
+
+            return defaultValue;
+        }
+
+        return JSON.parse(result);
+    }, [get, set]);
 
     const remove = React.useCallback(
         (key: string = storageRef.current.defaultKey) => {
