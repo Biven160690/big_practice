@@ -31,12 +31,15 @@ export const useStateWithHistory = <T>(defaultValue: T) => {
         }
     }, []);
 
-    return {
-        value,
-        back,
-        forward,
-        go,
-        set,
-        reset,
-    };
+    return React.useMemo(
+        () => ({
+            value,
+            back,
+            forward,
+            go,
+            set,
+            reset,
+        }),
+        [back, forward, go, reset, set, value]
+    );
 };

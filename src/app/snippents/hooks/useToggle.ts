@@ -9,5 +9,5 @@ export default function useToggle(
         setValue((prev) => (value ? value : !prev));
     }, []);
 
-    return [value, toggleValue];
+    return React.useMemo(() => [value, toggleValue], [toggleValue, value]);
 }

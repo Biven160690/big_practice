@@ -17,7 +17,10 @@ export const useInterval = (
 
     const start = React.useCallback(() => {
         if (delayRef.current !== null) {
-            intervalId.current = setInterval(() => handlerRef.current(), delayRef.current);
+            intervalId.current = setInterval(
+                () => handlerRef.current(),
+                delayRef.current
+            );
         }
     }, []);
 
@@ -36,5 +39,8 @@ export const useInterval = (
         return () => clear();
     }, [clear]);
 
-    return { pause: clear, reset, start };
+    return React.useMemo(
+        () => ({ pause: clear, reset, start }),
+        [clear, reset, start]
+    );
 };
