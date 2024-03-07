@@ -29,7 +29,7 @@ export const useAsync = <T>(fun: () => Promise<T>) => {
             isLoading,
             error,
             data,
-            runFetchData: (flag: boolean) => setStarted(flag),
+            runFetchData: (started: boolean) => setStarted(started),
         }),
         [data, error, isLoading]
     );
