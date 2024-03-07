@@ -15,32 +15,35 @@ export const useInterval = (
         delayRef.current = delay;
     });
 
-    const start = React.useCallback(() => {
-        if (delayRef.current !== null) {
-            intervalId.current = setInterval(
-                () => handlerRef.current(),
-                delayRef.current
-            );
-        }
-    }, []);
+    const manageInterval = React.useMemo(() => {
+        const start = () => {
+            if (delayRef.current !== null) {
+                intervalId.current = setInterval(
+                    () => handlerRef.current(),
+                    delayRef.current
+                );
+            }
+        };
 
-    const clear = React.useCallback(() => {
-        if (intervalId.current !== null) {
-            clearTimeout(intervalId.current);
-        }
-    }, []);
+        const clear = () => {
+            if (intervalId.current !== null) {
+                clearTimeout(intervalId.current);
+            }
+        };
 
-    const reset = React.useCallback(() => {
-        clear();
-        start();
-    }, [clear, start]);
+        return {
+            start,
+            clear,
+            reset: () => {
+                clear();
+                start();
+            },
+        };
+    }, []);
 
     React.useEffect(() => {
-        return () => clear();
-    }, [clear]);
+        return () => manageInterval.clear();
+    }, [manageInterval]);
 
-    return React.useMemo(
-        () => ({ pause: clear, reset, start }),
-        [clear, reset, start]
-    );
+    return manageInterval;
 };

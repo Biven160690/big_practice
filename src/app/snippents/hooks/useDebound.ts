@@ -14,12 +14,6 @@ export const useDebounce = (
         delayRef.current = delay;
     });
 
-    const clear = React.useCallback(() => {
-      if (timeOutId.current !== null) {
-          clearTimeout(timeOutId.current);
-      }
-  }, []);
-
     React.useEffect(() => {
         if (delayRef.current !== null) {
             timeOutId.current = setTimeout(
@@ -28,7 +22,11 @@ export const useDebounce = (
             );
         }
 
-        return () => clear();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [...dependencies, clear]);
+        return () => {
+            if (timeOutId.current !== null) {
+                clearTimeout(timeOutId.current);
+            }
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [...dependencies]);
 };
