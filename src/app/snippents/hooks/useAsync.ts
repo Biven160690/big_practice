@@ -1,66 +1,52 @@
 import React from 'react';
 
-const statusProcessing = <T>(
-    data: T,
-    status: number,
-    setData: (data: T) => void,
-    setIsLoading: (status: boolean) => void
-) => {
-    switch (true) {
-        case status >= 200 && status < 300:
-            setData(data);
-            setIsLoading(false);
-            break;
-        // Here you need to place your logic for processing statuses
-        default:
-            throw new Error(`HTTP error! Status: ${status} Error ${data}`);
-    }
-};
-
-export const useAsync = <T>() => {
+export const useAsync = <T>(fun: () => Promise<T>) => {
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
-    const [error, setError] = React.useState<Error | null>(null);
-    const [data, setData] = React.useState<T>();
-    const [link, setLink] = React.useState<string>();
-
-    // I could notes that I do not need to use try/catch because  I set error myself from switch/case
+    const [error, setError] = React.useState<any | null>(null);
+    const [data, setData] = React.useState<T | null>(null);
+    const [started, setStarted] = React.useState<boolean>(false);
+    const handle = React.useRef<() => Promise<T>>(fun);
 
     React.useEffect(() => {
-        if (!link) {
+        const fetchData = handle.current;
+
+        if (!started || !fetchData) {
             return;
         }
 
         setIsLoading(true);
+        setError(null);
+        setData(null);
 
-        const managementSignal = new AbortController();
-
-        const getData = async () => {
-            try {
-                const response = await fetch(link, {
-                    signal: managementSignal.signal,
-                });
-
-                const { status } = response;
-                const data: T = await response.json();
-                statusProcessing(data, status, setData, setIsLoading);
-            } catch (error) {
-                setError(error);
-                setIsLoading(false);
-            }
-        };
-
-        getData();
-
-        return () => managementSignal.abort();
-    }, [link]);
+        fetchData()
+            .then(setData)
+            .catch(setError)
+            .finally(() => setIsLoading(false));
+    }, [started]);
 
     return React.useMemo(
         () => ({
             isLoading,
             error,
             data,
-            fetchData: (link: string) => setLink(link),
+            runFetchData: (flag: boolean) => setStarted(flag),
         }),
         [data, error, isLoading]
     );
 };
+
+// const {isLoading, error, data, fetchData, runFetchData } = useAsync()
+// fetchData(() => {
+//     return new Promise((resolve, reject) => {
+//         const success = false
+//         setTimeout(() => {
+//           success ? resolve("Hi") : reject("Error")
+//        }, 1000)
+//    })
+// })
+// fetchData(() => {
+    // return fetch(url, { ...DEFAULT_OPTIONS, ...options }).then(res => {
+    //     if (res.ok) return res.json()
+    //     return res.json().then(json => Promise.reject(json))
+    //   })
+// })
