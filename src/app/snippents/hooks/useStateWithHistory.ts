@@ -1,45 +1,41 @@
 import React from 'react';
 
-export const useStateWithHistory = <T>(defaultValue: T) => {
-    const [value, setValue] = React.useState<T>(defaultValue);
-    const historyRef = React.useRef<T[]>([defaultValue]);
-    const pointHistoryRef = React.useRef<number>(0);
-
-    const set = React.useCallback((value: any) => {
-        historyRef.current.push(value);
-        setValue(value);
-        pointHistoryRef.current = historyRef.current.length - 1;
-    }, []);
-
-    const reset = React.useCallback(() => (historyRef.current = []), []);
-
-    const back = React.useCallback(() => {
-        if (pointHistoryRef.current > 0) {
-            setValue(historyRef.current[--pointHistoryRef.current]);
-        }
-    }, []);
-
-    const forward = React.useCallback(() => {
-        if (pointHistoryRef.current < historyRef.current.length - 1) {
-            setValue(historyRef.current[++pointHistoryRef.current]);
-        }
-    }, []);
-
-    const go = React.useCallback((index: number) => {
-        if (index >= 0 && index <= historyRef.current.length - 1) {
-            setValue(historyRef.current[(pointHistoryRef.current = index)]);
-        }
-    }, []);
+export const useStateWithHistory = <T>(
+    fun: (value: T | any) => void,
+    defaultValue?: T
+) => {
+    const handlerRef = React.useRef<(value: T | any) => void>(fun);
+    const historyRef = React.useRef<T[]>(defaultValue ? [defaultValue] : []);
+    const pointHistoryRef = React.useRef<number>(-1);
 
     return React.useMemo(
         () => ({
-            value,
-            back,
-            forward,
-            go,
-            set,
-            reset,
+            set: (value: T | any) => historyRef.current.push(value),
+            reset: () => {
+                historyRef.current = [];
+            },
+            back: () => {
+                if (pointHistoryRef.current > 0) {
+                    handlerRef.current(
+                        historyRef.current[--pointHistoryRef.current]
+                    );
+                }
+            },
+            forward: () => {
+                if (pointHistoryRef.current < historyRef.current.length - 1) {
+                    handlerRef.current(
+                        historyRef.current[++pointHistoryRef.current]
+                    );
+                }
+            },
+            go: (index: number) => {
+                if (index >= 0 && index <= historyRef.current.length - 1) {
+                    handlerRef.current(
+                        historyRef.current[(pointHistoryRef.current = index)]
+                    );
+                }
+            },
         }),
-        [back, forward, go, reset, set, value]
+        []
     );
 };

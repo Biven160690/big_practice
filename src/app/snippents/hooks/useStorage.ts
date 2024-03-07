@@ -1,105 +1,94 @@
 import React from 'react';
 
-export type StorageType<T> = {
-    defaultKey: string;
-    defaultValue: T;
+type SetProps<S> = S extends string
+    ? <V>(value: V, key?: string) => void
+    : <V>(value: V, key: string) => void;
+
+type StorageValue<T> = T extends undefined ? any : T;
+
+type GetProps<S, T> = S extends string
+    ? (key?: string) => StorageValue<T> | null
+    : (key: string) => StorageValue<T> | null;
+
+type RemoveProps<S> = S extends string
+    ? (key?: string) => void
+    : (key: string) => void;
+
+export type StorageSettings<K, V> = {
     storage: Storage;
+    defaultKey?: K;
+    defaultValue?: V;
 };
 
-export const useStorage = <T>(
-    defaultKey: string,
-    defaultValue: T,
-    storage: Storage
+const getStorageKey = <K>(defaultKey: K | undefined, key?: string) => {
+    const storageKey = key ?? defaultKey;
+
+    if (!storageKey) {
+        throw new Error('Don`t have key');
+    }
+
+    return storageKey;
+};
+
+// I need to re-watch my way in this code.
+
+export const useStorage = <K extends string | undefined, V>(
+    storage: Storage,
+    defaultKey?: K,
+    defaultValue?: V
 ) => {
-    const storageRef = React.useRef<StorageType<T>>({
+    const storageRef = React.useRef<StorageSettings<K, V>>({
         defaultKey,
         defaultValue,
         storage,
     });
 
-    const set = React.useCallback(
-        <VT>(value: VT, key: string = storageRef.current.defaultKey) =>
-            storageRef.current.storage.setItem(key, JSON.stringify(value)),
-        []
-    );
+    return React.useMemo(() => {
+        const set: SetProps<K> = <F>(value: F, key?: string) => {
+            const { defaultKey, storage } = storageRef.current;
+            const storageKey = getStorageKey<K>(defaultKey, key);
 
-    const get = React.useCallback(
-        (key: string = storageRef.current.defaultKey) => {
-            const result = storageRef.current.storage.getItem(key);
+            storage.setItem(storageKey, JSON.stringify(value));
+        };
 
-            if (!result) {
-                throw new Error(`key ${key} is not correct`);
+        const get: GetProps<K, V> = (key?: string) => {
+            const { defaultKey, storage } = storageRef.current;
+            const storageKey = getStorageKey<K>(defaultKey, key);
+
+            const result = storage.getItem(storageKey);
+            return result ? JSON.parse(result) : null;
+        };
+
+        const initialStorage = () => {
+            const { defaultValue, defaultKey } = storageRef.current;
+            const storageKey = getStorageKey<K>(defaultKey);
+
+            const result = get(storageKey);
+
+            if (!result && defaultValue !== undefined) {
+                set(defaultValue, storageKey);
+                return defaultValue;
             }
 
-            return JSON.parse(result);
-        },
-        []
-    );
+            if (result === null) {
+                throw new Error('Don`t have defaultValue');
+            }
 
-    const initialStorage = React.useCallback(() => {
-        const { defaultValue } = storageRef.current;
-        const result = get();
-
-        if (!result) {
-            set(defaultValue);
-
-            return defaultValue;
-        }
-
-        return JSON.parse(result);
-    }, [get, set]);
-
-    const remove = React.useCallback(
-        (key: string = storageRef.current.defaultKey) => {
-            storageRef.current.storage.removeItem(key);
-        },
-        []
-    );
-
-    React.useEffect(() => {
-        return () => {
-            window.removeEventListener('storage', remove),
-                window.removeEventListener('storage', get),
-                window.removeEventListener('storage', initialStorage),
-                window.removeEventListener('storage', set);
+            return result;
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
-    return React.useMemo(
-        () => ({
+        const remove: RemoveProps<K> = (key?: string) => {
+            const { defaultKey, storage } = storageRef.current;
+            const storageKey = getStorageKey<K>(defaultKey, key);
+
+            storage.removeItem(storageKey);
+        };
+
+        return {
             set,
             get,
             remove,
             initialStorage,
-        }),
-        [get, remove, set, initialStorage]
-    );
-};
-
-export const useStorageWithState = <T>(
-    defaultKey: string,
-    defaultValue: T,
-    storage: Storage
-) => {
-    const { set, initialStorage } = useStorage<T>(
-        defaultKey,
-        defaultValue,
-        storage
-    );
-    const [value, setValue] = React.useState<T>(() => initialStorage());
-
-    React.useLayoutEffect(() => {
-        if (value) {
-            set(value);
-        }
-    }, [set, value]);
-
-    return React.useMemo(
-        () => ({
-            value,
-            setValue,
-        }),
-        [value]
-    );
+        };
+    }, []);
 };
