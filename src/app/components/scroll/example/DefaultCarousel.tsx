@@ -7,7 +7,7 @@ import { useScrollApi } from '../hooks/useScrollApi';
 import { Carousel } from '../carousel';
 
 import styles from './styles.module.scss';
-import { useOnScreen } from '@/app/snippents/hooks/useObserver';
+import { useObserver } from '../../../snippents/hooks/useObserver';
 
 const cardWidth = 119;
 
@@ -59,7 +59,7 @@ export const DefaultCarousel = () => {
             behavior: 'smooth',
         });
     };
-    const { runObserver } = useOnScreen();
+    const { runObserver } = useObserver();
 
     React.useEffect(() => {
         const body = bodyRef.current;
