@@ -7,12 +7,24 @@ import { useScrollApi } from '../hooks/useScrollApi';
 import { Carousel } from '../carousel';
 
 import styles from './styles.module.scss';
+import { useObserver } from '../../../snippents/hooks/useObserver';
 
 const cardWidth = 119;
+
+export type CardRefList = React.MutableRefObject<{
+    [key: number]: HTMLDivElement;
+}>;
+
+export type InputsCollection<T> = {
+    [key: number]: T;
+};
 
 export const DefaultCarousel = () => {
     const { scrollAreaRef, containerRef, updateScrollPosition } =
         useScrollApi();
+
+    const cardRef = React.useRef<InputsCollection<HTMLDivElement>>({});
+    const bodyRef = React.useRef<HTMLDivElement | null>(null);
 
     const handleDirectionPrev = () => {
         const scrollArea = scrollAreaRef.current;
@@ -47,13 +59,32 @@ export const DefaultCarousel = () => {
             behavior: 'smooth',
         });
     };
+    const { runObserver } = useObserver();
+
+    React.useEffect(() => {
+        const body = bodyRef.current;
+        const card = cardRef.current;
+
+        if (!(body && card)) {
+            return;
+        }
+        const callback = () => {
+            alert('it works');
+        };
+
+        runObserver(
+            { rootMargin: '0px', threshold: 0.5 },
+            body,
+            callback
+        );
+    }, [runObserver]);
 
     const onMouseWheel = (e: WheelEvent<HTMLDivElement>) => {
         e.deltaY < 0 ? handleDirectionNext() : handleDirectionPrev();
     };
 
     return (
-        <div className={styles.defaultCarousel}>
+        <div className={styles.defaultCarousel} ref={bodyRef}>
             <button
                 onClick={handleDirectionPrev}
                 className={styles.defaultCarousel__button_left}
@@ -72,6 +103,12 @@ export const DefaultCarousel = () => {
                             <div
                                 key={index}
                                 className={styles.defaultCarousel__card}
+                                ref={(link) => {
+                                    if (!link) {
+                                        return;
+                                    }
+                                    cardRef.current[index] = link;
+                                }}
                             >
                                 {index + 1}
                             </div>

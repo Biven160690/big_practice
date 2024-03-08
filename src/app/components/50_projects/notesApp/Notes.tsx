@@ -64,7 +64,7 @@ export const Notes = ({ onDeleteNotes, onChangeNotes, value }: Props) => {
                 style={defaultStyles}
                 onChange={onChangeNotes}
                 defaultValue={value}
-            ></textarea>
+            />
         </div>
     );
 };
